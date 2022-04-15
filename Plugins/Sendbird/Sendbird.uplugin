@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 100,
+	"VersionName": "3.1.0",
+	"FriendlyName": "Sendbird",
+	"Description": "",
+	"Category": "Other",
+	"CreatedBy": "",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"EnabledByDefault": true,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "Sendbird",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
