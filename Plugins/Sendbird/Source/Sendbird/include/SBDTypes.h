@@ -191,4 +191,16 @@ enum class SBDPushTokenRegistrationStatus {
 	Error,
 };
 
+/**
+ * Report category.
+ * 
+ * @since 3.1.1
+ */
+enum class SBDReportCategory {
+	Suspicious,
+	Harassing,
+	Spam,
+	Inappropriate,
+};
+
 #endif /* SENDBIRD_SBDTYPES_H_ */

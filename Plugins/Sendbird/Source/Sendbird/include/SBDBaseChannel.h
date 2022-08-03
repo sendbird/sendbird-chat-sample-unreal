@@ -668,6 +668,39 @@ public:
      */
     SBDOperatorListQuery* CreateOperatorListQuery();
 
+	/**
+     * Reports this channel of inappropriate activities.
+     *
+     * @param report_category    SBDReportCategory.
+     * @param report_description Report description (optional). If this isn't needed, set `SBD_NULL_WSTRING`.
+     * @param handler            Callback handler.
+     * @since 3.1.1
+     */
+	void Report(SBDReportCategory report_category, std::wstring report_description, std::function<void(SBDError*)> completion_handler);
+
+	/**
+     * Reports a user of suspicious activities.
+     *
+     * @param offending_user     Offending user.
+     * @param report_category    SBDReportCategory.
+     * @param report_description Report description (optional). If this isn't needed, set `SBD_NULL_WSTRING`.
+     * @param handler            Callback handler.
+     * @since 3.1.1
+     */
+	void ReportUser(SBDUser& offending_user, SBDReportCategory report_category, std::wstring report_description, std::function<void(SBDError*)> completion_handler);
+
+    /**
+     * Reports a malicious message.
+     *
+     * @param message            SBDUserMessage or SBDFileMessage.
+     * @param report_category    SBDReportCategory.
+     * @param report_description Report description (optional). If this isn't needed, set `SBD_NULL_WSTRING`.
+     * @param handler            Callback handler.
+     * @since 3.1.1
+     */
+	void ReportMessage(SBDBaseMessage* message, SBDReportCategory report_category, std::wstring report_description, std::function<void(SBDError*)> completion_handler);
+
+
 protected:
 	SBDBaseChannel(const std::string& dict);
 	virtual ~SBDBaseChannel() {}
