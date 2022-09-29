@@ -347,7 +347,6 @@ public:
 private:
 	int64_t last_start_typing_ts;
 	int64_t last_end_typing_ts;
-	int64_t last_manual_mark_as_read_ts;
 	std::map<std::wstring, SBDMember> member_map;
 	static std::mutex member_mutex;
 	std::map<std::wstring, int64_t> cached_read_receipt_status;
