@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "SBCommonEnum.generated.h"
+#include "SBChatCommonEnum.generated.h"
 
 UENUM(BlueprintType)
 enum class ESBMessageType : uint8

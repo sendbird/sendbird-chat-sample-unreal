@@ -2,12 +2,9 @@
 
 #pragma once
 
-#include "SBCommonEnum.h"
-#include "Sendbird/include/SBDUser.h"
-#include "Sendbird/include/SBDBaseChannel.h"
-#include "Sendbird/include/SBDOpenChannel.h"
-#include "Sendbird/include/SBDGroupChannel.h"
-#include "SBCommonStruct.generated.h"
+#include "Sendbird/include/Sendbird.h"
+#include "SBChatCommonEnum.h"
+#include "SBChatCommonStruct.generated.h"
 
 USTRUCT(BlueprintType)
 struct FSBUserInfo

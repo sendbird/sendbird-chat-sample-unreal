@@ -13,10 +13,5 @@ class ASendbirdSampleGameMode : public AGameMode
 
 public:
 	ASendbirdSampleGameMode();
-	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;	
-	virtual void NotifyPendingConnectionLost(const FUniqueNetIdRepl& ConnectionUniqueId) override;
-	virtual void HandleDisconnect(UWorld* InWorld, UNetDriver* NetDriver) override;
-
-	UPROPERTY()
-	TMap<FString, UTexture2DDynamic*> CachedProfileTexture;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 };
