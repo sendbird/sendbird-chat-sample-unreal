@@ -99,6 +99,7 @@ USBChat* USBChat::UpdateCurrentUserInfo(const FString& NickName, const FString& 
 #if WITH_SENDBIRD
 	TWeakObjectPtr<USBChat> WeakSBChat = BlueprintAsyncAction;
 
+	// In order to use the API, the option must be turned on in the dashboard.
 	SBDMain::UpdateCurrentUserInfo(TCHAR_TO_WCHAR(*NickName), TCHAR_TO_WCHAR(*ProfileUrl), [NickName, ProfileUrl, WeakSBChat](SBDError* Error) {
 		ProcessCompletionHandler(WeakSBChat, Error, [NickName, ProfileUrl]() {
 		});
@@ -132,6 +133,7 @@ USBChat* USBChat::GetAllUserList(UObject* WorldContextObject, bool bClearList, T
 
 	if (bClearList)
 	{
+		// In order to use the API, the option must be turned on in the dashboard.
 		SBDUserListQuery* UserListQuery = SBChatManager::Get().CreateAllUserListQuery();
 		if (!ensureMsgf(UserListQuery, TEXT("[USBChat::GetAllUserList] CreateAllUserListQuery() failed!!")))
 		{
@@ -175,6 +177,8 @@ USBChat* USBChat::FindUser(UObject* WorldContextObject, const FString& UserID, F
 
 	std::vector<std::wstring> UserIds;
 	UserIds.push_back(TCHAR_TO_WCHAR(*UserID));
+
+	// In order to use the API, the option must be turned on in the dashboard.
 	SBDUserListQuery* UserListQuery = SBDMain::CreateUserListQuery(UserIds);
 	if (!ensureMsgf(UserListQuery, TEXT("[USBChat::FindUser] CreateUserListQuery() failed!!")))
 	{
@@ -226,6 +230,7 @@ USBChat* USBChat::CreateOpenChannel(const FString& Name, FSBChannelInfo& OpenCha
 	if (SBDMain::GetCurrentUser() != nullptr)
 		user_ids.push_back(SBDMain::GetCurrentUser()->user_id);
 
+	// In order to use the API, the option must be turned on in the dashboard.
 	SBDOpenChannel::CreateChannel(TCHAR_TO_WCHAR(*Name), TCHAR_TO_WCHAR(TEXT("")), TCHAR_TO_WCHAR(TEXT("")), TCHAR_TO_WCHAR(TEXT("")), user_ids, TCHAR_TO_WCHAR(TEXT("")),
 		[WeakSBChat, &OpenChannelInfo](SBDOpenChannel* OpenChannel, SBDError* Error) {
 		ProcessCompletionHandler(WeakSBChat, Error, [OpenChannel, &OpenChannelInfo]() {
@@ -375,6 +380,7 @@ USBChat* USBChat::GetOpenChannelParticipantList(UObject* WorldContextObject, boo
 	SBDOpenChannel* CurrentOpenChannel = static_cast<SBDOpenChannel*>(CurrentChannel);
 	if (bClearList)
 	{
+		// In order to use the API, the option must be turned on in the dashboard.
 		SBDUserListQuery* UserListQuery = SBChatManager::Get().CreateParticipantListQuery(CurrentOpenChannel);
 		if (!ensureMsgf(UserListQuery, TEXT("[USBChat::GetOpenChannelParticipantList] CreateParticipantListQuery() failed!!")))
 		{
@@ -478,6 +484,7 @@ USBChat* USBChat::CreateGroupChannel(const FString& Name, FSBChannelInfo& GroupC
 	if (SBDMain::GetCurrentUser() != nullptr)
 		user_ids.push_back(SBDMain::GetCurrentUser()->user_id);
 
+	// In order to use the API, the option must be turned on in the dashboard.
 	SBDGroupChannel::CreateChannel(user_ids, TCHAR_TO_WCHAR(*Name), false, TCHAR_TO_WCHAR(TEXT("")), TCHAR_TO_WCHAR(TEXT("")), TCHAR_TO_WCHAR(TEXT("")), [WeakSBChat, &GroupChannelInfo](SBDGroupChannel* GroupChannel, SBDError* Error) {
 		ProcessCompletionHandler(WeakSBChat, Error, [GroupChannel, &GroupChannelInfo]() {
 			SBChatManager::Get().SetCurrentChannel(GroupChannel);
@@ -501,6 +508,7 @@ USBChat* USBChat::CreateGroupChannelWithUserIds(UObject* WorldContextObject, con
 	for (const FString& UserId : FriendIds)
 		user_ids.push_back(TCHAR_TO_WCHAR(*UserId));
 
+	// In order to use the API, the option must be turned on in the dashboard.
 	SBDGroupChannel::CreateChannel(user_ids, TCHAR_TO_WCHAR(*ChannelName), false, TCHAR_TO_WCHAR(TEXT("")), TCHAR_TO_WCHAR(TEXT("")), TCHAR_TO_WCHAR(TEXT("")), [WeakSBChat](SBDGroupChannel* GroupChannel, SBDError* Error) {
 		ProcessCompletionHandler(WeakSBChat, Error, [GroupChannel]() {
 			SBChatManager::Get().SetCurrentChannel(GroupChannel);
@@ -870,6 +878,7 @@ USBChat* USBChat::GetPreviousMessageList(UObject* WorldContextObject, TArray<FSB
 void USBChat::GetUserList(UWorld* World, TWeakObjectPtr<USBChat> WeakSBChat, TArray<FSBUserInfo>& UserList)
 {
 #if WITH_SENDBIRD
+	// In order to use the API, the option must be turned on in the dashboard.
 	SBDUserListQuery* UserListQuery = SBChatManager::Get().GetUserListQuery();
 
 	if (!ensureMsgf(UserListQuery, TEXT("[USBChat::GetUserList] GetUserListQuery() failed!!")))
