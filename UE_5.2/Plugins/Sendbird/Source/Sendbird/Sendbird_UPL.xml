@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2021 Sendbird, Inc. All rights reserved. -->
+
+<!-- steps to add to build additions -->
+<root xmlns:android="http://schemas.android.com/apk/res/android">
+  <!-- init section is always evaluated once per architecture -->
+	<init>
+    <log text="Sendbird init"/>
+	</init>
+
+  <!-- files or directories to copy to Intermediate/Android/APK -->
+	<resourceCopies>
+		<isArch arch="arm64-v8a">
+			<copyFile src="$S(PluginDir)/lib/android/arm64-v8a/libSendbirdChat.so"
+                dst="$S(BuildDir)/libs/arm64-v8a/libSendbirdChat.so"/>
+		</isArch>
+    <isArch arch="armeabi-v7a">
+			<copyFile src="$S(PluginDir)/lib/android/armeabi-v7a/libSendbirdChat.so"
+                dst="$S(BuildDir)/libs/armeabi-v7a/libSendbirdChat.so"/>
+		</isArch>
+    <isArch arch="x86">
+			<copyFile src="$S(PluginDir)/lib/android/x86/libSendbirdChat.so"
+                dst="$S(BuildDir)/libs/x86/libSendbirdChat.so"/>
+		</isArch>
+    <isArch arch="x86_64">
+			<copyFile src="$S(PluginDir)/lib/android/x86_64/libSendbirdChat.so"
+                dst="$S(BuildDir)/libs/x86_64/libSendbirdChat.so"/>
+		</isArch>
+	</resourceCopies>
+</root>
